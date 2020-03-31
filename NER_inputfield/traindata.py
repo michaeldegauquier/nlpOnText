@@ -49,5 +49,8 @@ def test():
         ('I want a person who is not rude, but happy',
          {'entities': [(23, 31, 'ct'), (37, 42, 'ct')]}),
 
+        ('I want a person who is not rude and not aggressive, but happy',
+         {'entities': [(23, 31, 'ct'), (36, 50, 'ct'), (56, 61, 'ct')]}),
+
         ]
     return TRAIN_DATA
