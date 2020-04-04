@@ -1,9 +1,10 @@
 import spacy
 import random
-from NER_inputfield import traindata
+import json
 
-TRAIN_DATA = traindata.test()
-trainable = False
+from flask import jsonify
+
+from NER_inputfield import traindata
 
 
 def train_spacy(data, iterations):
@@ -39,36 +40,51 @@ def train_spacy(data, iterations):
     return nlp
 
 
-try:
-    spacy.load('../NER_inputfield/ner_model')
-    trainable = True  # Must be False
-except IOError:
-    trainable = True
+def get_character_traits(all_entities):
+    character_traits_chatbot = {"friendly", "happy", "aggressive", "rude", "lazy", "pushy"}
+    character_traits = []
 
-if trainable:
-    prdnlp = train_spacy(TRAIN_DATA, 20)
+    for entity in all_entities:
+        for ct in character_traits_chatbot:
+            if entity == ct:
+                character_traits.append(ct)
 
-    # Save our trained Model
-    prdnlp.to_disk('../NER_inputfield/ner_model')
+    json_data = {"Id": 1, "character_traits": character_traits}
 
-    test_text = ""
+    print(json_data)
 
-    # Test your text
-    while test_text != "q":
-        test_text = input("Enter your testing text: ")
-        doc = prdnlp(test_text)
-        for ent in doc.ents:
-            print(ent.text, ent.start_char, ent.end_char, ent.label_)
-else:
-    nlp = spacy.load('../NER_inputfield/ner_model')
+    return character_traits
 
-    prdnlp = nlp
 
-    test_text = ""
+def get_data_from_input(text_input):
+    TRAIN_DATA = traindata.test()
 
-    # Test your text
-    while test_text != "q":
-        test_text = input("Enter your testing text: ")
-        doc = prdnlp(test_text)
-        for ent in doc.ents:
-            print(ent.text, ent.start_char, ent.end_char, ent.label_)
+    try:
+        spacy.load('../NER_inputfield/ner_model')
+        trainable = False  # Must be False
+    except IOError:
+        trainable = True
+
+    if trainable:
+        prdnlp = train_spacy(TRAIN_DATA, 20)
+
+        # Save our trained Model
+        prdnlp.to_disk('../NER_inputfield/ner_model')
+    else:
+        nlp = spacy.load('../NER_inputfield/ner_model')
+
+        prdnlp = nlp
+
+    test_text = text_input
+    doc = prdnlp(test_text)
+
+    all_entities = []
+
+    for ent in doc.ents:
+        all_entities.append(ent.text)
+        print(ent.text, ent.start_char, ent.end_char, ent.label_)
+
+    get_character_traits(all_entities)
+
+
+get_data_from_input("I want a person who is aggressive, happy and not friendly")
