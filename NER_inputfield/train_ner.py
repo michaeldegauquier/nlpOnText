@@ -57,8 +57,20 @@ if trainable:
     while test_text != "q":
         test_text = input("Enter your testing text: ")
         doc = prdnlp(test_text)
+
+        entities = ''
+        i = 0
+
         for ent in doc.ents:
-            print(ent.text, ent.start_char, ent.end_char, ent.label_)
+            # print(ent.text, ent.start_char, ent.end_char, ent.label_)
+            print('{}: ({}, {}, \"{}\")'.format(ent.text, ent.start_char, ent.end_char, ent.label_))
+            if len(doc.ents) - 1 == i:
+                entities += '({}, {}, \"{}\")'.format(ent.start_char, ent.end_char, ent.label_)
+            else:
+                entities += '({}, {}, \"{}\"), '.format(ent.start_char, ent.end_char, ent.label_)
+                i += 1
+
+        print('("{}",\n{{"entities": [{}]}}),'.format(test_text, entities))
 else:
     nlp = spacy.load('../NER_inputfield/ner_model')
 
@@ -70,5 +82,17 @@ else:
     while test_text != "q":
         test_text = input("Enter your testing text: ")
         doc = prdnlp(test_text)
+
+        entities = ''
+        i = 0
+
         for ent in doc.ents:
-            print(ent.text, ent.start_char, ent.end_char, ent.label_)
+            # print(ent.text, ent.start_char, ent.end_char, ent.label_)
+            print('{}: ({}, {}, \"{}\")'.format(ent.text, ent.start_char, ent.end_char, ent.label_))
+            if len(doc.ents) - 1 == i:
+                entities += '({}, {}, \"{}\")'.format(ent.start_char, ent.end_char, ent.label_)
+            else:
+                entities += '({}, {}, \"{}\"), '.format(ent.start_char, ent.end_char, ent.label_)
+                i += 1
+
+        print('("{}",\n{{"entities": [{}]}}),'.format(test_text, entities))

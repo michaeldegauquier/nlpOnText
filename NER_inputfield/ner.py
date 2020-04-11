@@ -1,9 +1,5 @@
 import spacy
 import random
-import json
-
-from flask import jsonify
-
 from NER_inputfield import traindata
 
 
@@ -44,19 +40,29 @@ def get_character_traits(all_entities):
     character_traits_chatbot = {"friendly", "happy", "aggressive", "rude", "lazy", "pushy"}
     character_traits = []
 
+    age = 0
+    gender = "Male"
+    glasses = False
+    ethnicity = ""
+
     for entity in all_entities:
         for ct in character_traits_chatbot:
-            if entity == ct:
+            if entity == ct and entity not in character_traits:
                 character_traits.append(ct)
 
-    json_data = {"Id": 1, "character_traits": character_traits}
+    json_data = {"Id": 1,
+                 "character_traits": character_traits,
+                 "age": age,
+                 "gender": gender,
+                 "glasses": glasses,
+                 "ethnicity": ethnicity}
 
     print(json_data)
 
     return character_traits
 
 
-def get_data_from_input(text_input):
+def get_json_data_from_input(text_input):
     TRAIN_DATA = traindata.test()
 
     try:
@@ -87,4 +93,4 @@ def get_data_from_input(text_input):
     get_character_traits(all_entities)
 
 
-get_data_from_input("I want a person who is aggressive, happy and not friendly")
+get_json_data_from_input("She is very smart. She is all the time happy and friendly to everybody. Sometimes she wears glasses and she is 26 years old. She is from belgium.")
