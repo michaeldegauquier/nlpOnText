@@ -68,7 +68,7 @@ def get_age(entities):
 
     for entity in entities:
         if entity.isdigit():
-            if 120 >= int(entity) >= 18:
+            if 100 >= int(entity) >= 0:
                 possible_ages.append(int(entity))
 
     if len(possible_ages) != 0:
@@ -199,4 +199,4 @@ def get_json_data_from_input(text_input):
 
 
 get_json_data_from_input(
-    "She is somebody who is aggressive. He is old and wears glasses. He is also rich and has a nice home.")
+    "He is 00 years and 12 years old and has a dog. Sometimes he is very rude and happy to people. But most of the time he is friendly. He is an asian man")

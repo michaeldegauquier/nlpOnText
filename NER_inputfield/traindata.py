@@ -193,6 +193,22 @@ def test():
         ("He is a man who is a caucasian. He does not wear glasses and is always rude and pushy.",
          {"entities": [(0, 2, "gender"), (8, 11, "gender"), (21, 30, "ety"), (32, 34, "gender"), (40, 56, "glasses"),
                        (71, 75, "ct"), (80, 85, "ct")]}),
+
+        ("he is happy and friendly, he is 25 years old",
+         {"entities": [(0, 2, "gender"), (6, 11, "ct"), (16, 24, "ct"), (26, 28, "gender"), (32, 34, "age")]}),
+
+        ("he is happy and friendly, he is 25 years old and is sometimes aggressive and he is an asian",
+         {"entities": [(0, 2, "gender"), (6, 11, "ct"), (16, 24, "ct"), (26, 28, "gender"), (32, 34, "age"),
+                       (62, 72, "ct"), (77, 79, "gender"), (86, 91, "ety")]}),
+
+        ("he is happy and rude, he is 25 years old",
+         {"entities": [(0, 2, "gender"), (6, 11, "ct"), (16, 20, "ct"), (22, 24, "gender"), (28, 30, "age")]}),
+
+        ("He is 25 years old and has a dog. Sometimes he is very rude and happy to people. But most of the time he is friendly. He is an asian man",
+         {"entities": [(0, 2, "gender"), (6, 8, "age"), (44, 46, "gender"), (55, 59, "ct"), (64, 69, "ct"),
+                       (108, 116, "ct"), (118, 120, "gender"), (127, 132, "ety"), (133, 136, "gender")]}),
+
+
     ]
     return TRAIN_DATA
 
