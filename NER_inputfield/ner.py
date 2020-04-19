@@ -199,4 +199,4 @@ def get_json_data_from_input(text_input):
 
 
 get_json_data_from_input(
-    "He is 00 years and 12 years old and has a dog. Sometimes he is very rude and happy to people. But most of the time he is friendly. He is an asian man")
+    "He is 28 years old and has a dog. Sometimes he is very rude and aggressive to people. But most of the time he is friendly. He is an african who is wearing glasses.")

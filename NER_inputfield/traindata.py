@@ -208,6 +208,17 @@ def test():
          {"entities": [(0, 2, "gender"), (6, 8, "age"), (44, 46, "gender"), (55, 59, "ct"), (64, 69, "ct"),
                        (108, 116, "ct"), (118, 120, "gender"), (127, 132, "ety"), (133, 136, "gender")]}),
 
+        ("i want somebody who is aggressive. He is a woman who is slow in talking. She wears glasses and is 48 years old.",
+         {"entities": [(23, 33, "ct"), (35, 37, "gender"), (43, 48, "gender"), (73, 76, "gender"), (77, 90, "glasses"),
+                       (98, 100, "age")]}),
+
+        ("He is 28 years old, he also is a strange guy who is friendly and sometimes rude. He is an asian.",
+         {"entities": [(0, 2, "gender"), (6, 8, "age"), (52, 60, "ct"), (75, 79, "ct"), (81, 83, "gender"),
+                       (90, 95, "ety")]}),
+
+        ("She is a very friendly person to her friends. She is a caucasian and has a nice dog. She is 39 years old and does not wear glasses.",
+         {"entities": [(0, 3, "gender"), (14, 22, "ct"), (46, 49, "gender"), (55, 64, "ety"), (85, 88, "gender"),
+                       (92, 94, "age"), (114, 130, "glasses")]}),
 
     ]
     return TRAIN_DATA
