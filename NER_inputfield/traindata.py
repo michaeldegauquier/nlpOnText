@@ -9,8 +9,23 @@ def test():
         ("I want a person who is very aggressive and happy sometimes",
          {"entities": [(28, 38, "ct"), (43, 48, "ct")]}),
 
+        ("I want a person who is very angry and glad sometimes",
+         {"entities": [(28, 33, "ct"), (38, 42, "ct")]}),
+
+        ("I want a person who is very mad and joyous sometimes",
+         {"entities": [(28, 31, "ct"), (36, 42, "ct")]}),
+
+        ("I want a person who is very evil and glad sometimes",
+         {"entities": [(28, 32, "ct"), (37, 41, "ct")]}),
+
         ("I want a person who is very happy and friendly sometimes",
          {"entities": [(28, 33, "ct"), (38, 46, "ct")]}),
+
+        ("I want a person who is very happy and kind sometimes",
+         {"entities": [(28, 33, "ct"), (38, 42, "ct")]}),
+
+        ("I want a person who is very joyous and kindly sometimes",
+         {"entities": [(28, 34, "ct"), (39, 45, "ct")]}),
 
         ("I want a person who is very aggressive, rude and happy sometimes",
          {"entities": [(28, 38, "ct"), (40, 44, "ct"), (49, 54, "ct")]}),
@@ -30,14 +45,44 @@ def test():
         ("I want a person who is pushy all the time.",
          {"entities": [(23, 28, "ct")]}),
 
+        ("I want a person who is pushful all the time.",
+         {"entities": [(23, 30, "ct")]}),
+
+        ("I want a person who is obtrusive all the time.",
+         {"entities": [(23, 32, "ct")]}),
+
         ("I want a person who is lazy all the time.",
+         {"entities": [(23, 27, "ct")]}),
+
+        ("I want a person who is idle all the time.",
          {"entities": [(23, 27, "ct")]}),
 
         ("I want a person who is friendly, rude and lazy sometimes",
          {"entities": [(23, 31, "ct"), (33, 37, "ct"), (42, 46, "ct")]}),
 
+        ("I want a person who is friendly, rude and idle sometimes",
+         {"entities": [(23, 31, "ct"), (33, 37, "ct"), (42, 46, "ct")]}),
+
+        ("I want a person who is friendly, impolite and idle sometimes",
+         {"entities": [(23, 31, "ct"), (33, 41, "ct"), (46, 50, "ct")]}),
+
         ("I want a person who is lazy and rude sometimes",
          {"entities": [(23, 27, "ct"), (32, 36, "ct")]}),
+
+        ("I want a person who is idle and bold sometimes",
+         {"entities": [(23, 27, "ct"), (32, 36, "ct")]}),
+
+        ("I want a person who is lazy and discourteous sometimes",
+         {"entities": [(23, 27, "ct"), (32, 44, "ct")]}),
+
+        ("I want a person who is lazy and unmannerly sometimes",
+         {"entities": [(23, 27, "ct"), (32, 42, "ct")]}),
+
+        ("I want a person who is idle and uncivil sometimes",
+         {"entities": [(23, 27, "ct"), (32, 39, "ct")]}),
+
+        ("I want a person who is idle and brutal sometimes",
+         {"entities": [(23, 27, "ct"), (32, 38, "ct")]}),
 
         ("I want a person who is enormous lazy and sometimes happy",
          {"entities": [(32, 36, "ct"), (51, 56, "ct")]}),
@@ -219,6 +264,24 @@ def test():
         ("She is a very friendly person to her friends. She is a caucasian and has a nice dog. She is 39 years old and does not wear glasses.",
          {"entities": [(0, 3, "gender"), (14, 22, "ct"), (46, 49, "gender"), (55, 64, "ety"), (85, 88, "gender"),
                        (92, 94, "age"), (114, 130, "glasses")]}),
+
+        ("She is a very kind and well known person. Sometimes she is idle and impolite.",
+         {"entities": [(0, 3, "gender"), (14, 18, "ct"), (52, 55, "gender"), (59, 63, "ct"), (68, 76, "ct")]}),
+
+        ("She is not bold to other people. She wears glasses and is 28 years old.",
+         {"entities": [(0, 3, "gender"), (7, 15, "ct"), (19, 24, "ct"), (33, 36, "gender"), (37, 50, "glasses"),
+                       (58, 60, "age")]}),
+
+        ("He is a person who is very rich. He isn't happy and is very unmannerly. He always wears glasses.",
+         {"entities": [(0, 2, "gender"), (33, 35, "gender"), (38, 47, "ct"), (60, 70, "ct"), (72, 74, "gender"),
+                       (82, 95, "glasses")]}),
+
+        ("I want a person who is not mad and not uncivil. He must be an obtrusive person and must be 25 years old.",
+         {"entities": [(23, 30, "ct"), (35, 46, "ct"), (48, 50, "gender"), (62, 71, "ct"), (91, 93, "age")]}),
+
+        ("I want somebody who is bold to everybody. He is not mad and not pushful.",
+         {"entities": [(23, 27, "ct"), (42, 44, "gender"), (48, 55, "ct"), (60, 71, "ct")]}),
+
 
 
     ]
