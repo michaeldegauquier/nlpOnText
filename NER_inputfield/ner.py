@@ -94,7 +94,7 @@ def get_age(entities):
 
 def get_gender(entities):
     gender_male_keywords = {"he", "male", "him", "his", "man", "men", "husband", "husbands"}
-    gender_female_keywords = {"she", "female", "her", "woman", "women", "wife", "wives"}
+    gender_female_keywords = {"she", "female", "her", "woman", "women", "wife", "wives", "girl"}
     male_counter = 0
     female_counter = 0
 
@@ -118,8 +118,8 @@ def get_gender(entities):
 
 
 def get_glasses(entities):
-    glasses_keywords = {"wears glasses", "wear glasses", "wearing glasses"}
-    no_glasses_keywords = {"wears no glasses", "wear no glasses", "wearing no glasses", "not wear glasses"}
+    glasses_keywords = {"wears glasses", "wear glasses", "wearing glasses", "has glasses"}
+    no_glasses_keywords = {"wears no glasses", "wear no glasses", "wearing no glasses", "not wear glasses", "no glasses"}
     glasses_counter = 0
     no_glasses_counter = 0
 
@@ -165,19 +165,44 @@ def get_ethnicity(entities):
     return ethnicity_picker(ethnicity_keywords)
 
 
+def get_random_name(gender, ethnicity):
+    female_names = {"caucasian": ["Molly", "Claire", "Abigail", "Jenna", "Allison", "Hannah", "Kaitlin", "Katy", "Emily", "Katherine"],
+                    "african": ["Nombeko", "Ekua", "Emem", "Anaya", "Ashanti", "Chike", "Mesi", "Nia", "Sauda", "Zalika"],
+                    "southern": ["Caroline", "Charlotte", "Ruby", "Bea", "Daisy", "Isabelle", "Selena", "Rita", "Ella", "Violet"],
+                    "asian": ["Kim", "Minji", "Jane", "Lily", "Alice", "Amy", "Jessica", "Sarah", "Rachel", "Cherry"]}
+
+    male_names = {"caucasian": ["Jake", "Cody", "Luke", "Logan", "Cole", "Lucas", "Bradley", "Jacob", "Dylan", "Colin"],
+                  "african": ["Akachi", "Berko", "Cayman", "Chibuzo", "Desta", "Dubaku", "Keyon", "Obasi", "Simba", "Talib"],
+                  "southern": ["Billy", "Abott", "Alden", "Mason", "Davis", "Nolan", "Redmond", "Victor", "Lester", "Emmet"],
+                  "asian": ["Lee", "Jason", "Daniel", "James", "David", "Jack", "Eric", "Tony", "Sam", "Chris"]}
+
+    if gender.lower() == "male":
+        for ety, names in male_names.items():
+            if ety == ethnicity:
+                rand_num = random.randint(0, len(names)-1)
+                return names[rand_num]
+    else:
+        for ety, names in female_names.items():
+            if ety == ethnicity:
+                rand_num = random.randint(0, len(names)-1)
+                return names[rand_num]
+
+
 def get_json(doc):
     character_traits = get_character_traits(filter_list(doc, "ct"))
     age = get_age(filter_list(doc, "age"))
     gender = get_gender(filter_list(doc, "gender"))
     glasses = get_glasses(filter_list(doc, "glasses"))
     ethnicity = get_ethnicity(filter_list(doc, "ety"))
+    name = get_random_name(gender, ethnicity)
 
     json_data = {"Id": 1,
                  "character_traits": character_traits,
                  "age": age,
                  "gender": gender,
                  "glasses": glasses,
-                 "ethnicity": ethnicity}
+                 "ethnicity": ethnicity,
+                 "name": name}
 
     print(json_data)
 
@@ -216,4 +241,4 @@ def get_json_data_from_input(text_input):
 
 
 get_json_data_from_input(
-    "He is 28 years old and has a dog. Sometimes he is very rude and aggressive to people.")
+    "sHe is 28 years old and has a dog. Sometimes she is very rude and aggressive to people. She is a southern.")
