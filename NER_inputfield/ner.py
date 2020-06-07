@@ -47,16 +47,22 @@ def filter_list(doc, entity_name):
 
 
 def get_character_traits(entities):
-    character_traits_chatbot = {"friendly": ["friendly", "kind", "kindly", "not rude", "n't rude", "not brutal", "n't brutal", "not impolite", "n't impolite",
-                                             "not bold", "n't bold", "not discourteous", "n't discourteous", "not unmannerly", "n't unmannerly", "not uncivil",
-                                             "n't uncivil"],
-                                "happy": ["happy", "glad", "joyous", "not aggressive", "n't aggressive", "not angry", "n't angry", "not mad", "n't mad",
-                                          "not evil", "n't evil"],
-                                "aggressive": ["aggressive", "angry", "mad", "evil", "not happy", "n't happy", "not glad", "n't glad", "not joyous", "n't joyous"],
-                                "rude": ["rude", "brutal", "impolite", "bold", "discourteous", "unmannerly", "uncivil", "not friendly", "n't friendly",
-                                         "not kind", "n't kind", "not kindly", "n't kindly"],
-                                "lazy": ["lazy", "idle"],
-                                "pushy": ["pushy", "pushful", "obtrusive"]}
+    character_traits_chatbot = {
+        "friendly": ["friendly", "kind", "kindly", "not rude", "n't rude", "not brutal", "n't brutal", "not impolite",
+                     "n't impolite",
+                     "not bold", "n't bold", "not discourteous", "n't discourteous", "not unmannerly", "n't unmannerly",
+                     "not uncivil",
+                     "n't uncivil"],
+        "happy": ["happy", "glad", "joyous", "not aggressive", "n't aggressive", "not angry", "n't angry", "not mad",
+                  "n't mad",
+                  "not evil", "n't evil"],
+        "aggressive": ["aggressive", "angry", "mad", "evil", "not happy", "n't happy", "not glad", "n't glad",
+                       "not joyous", "n't joyous"],
+        "rude": ["rude", "brutal", "impolite", "bold", "discourteous", "unmannerly", "uncivil", "not friendly",
+                 "n't friendly",
+                 "not kind", "n't kind", "not kindly", "n't kindly"],
+        "lazy": ["lazy", "idle"],
+        "pushy": ["pushy", "pushful", "obtrusive"]}
     character_traits = []
 
     for entity in entities:
@@ -66,7 +72,7 @@ def get_character_traits(entities):
                     character_traits.append(ct)
 
     if len(character_traits) == 0:
-        num = random.randint(0, len(character_traits_chatbot)-1)
+        num = random.randint(0, len(character_traits_chatbot) - 1)
         character_traits.append(list(character_traits_chatbot)[num])
 
     return character_traits
@@ -119,7 +125,8 @@ def get_gender(entities):
 
 def get_glasses(entities):
     glasses_keywords = {"wears glasses", "wear glasses", "wearing glasses", "has glasses"}
-    no_glasses_keywords = {"wears no glasses", "wear no glasses", "wearing no glasses", "not wear glasses", "no glasses"}
+    no_glasses_keywords = {"wears no glasses", "wear no glasses", "wearing no glasses", "not wear glasses",
+                           "no glasses"}
     glasses_counter = 0
     no_glasses_counter = 0
 
@@ -166,25 +173,29 @@ def get_ethnicity(entities):
 
 
 def get_random_name(gender, ethnicity):
-    female_names = {"caucasian": ["Molly", "Claire", "Abigail", "Jenna", "Allison", "Hannah", "Kaitlin", "Katy", "Emily", "Katherine"],
-                    "african": ["Nombeko", "Ekua", "Emem", "Anaya", "Ashanti", "Chike", "Mesi", "Nia", "Sauda", "Zalika"],
-                    "southern": ["Caroline", "Charlotte", "Ruby", "Bea", "Daisy", "Isabelle", "Selena", "Rita", "Ella", "Violet"],
-                    "asian": ["Kim", "Minji", "Jane", "Lily", "Alice", "Amy", "Jessica", "Sarah", "Rachel", "Cherry"]}
+    female_names = {
+        "caucasian": ["Molly", "Claire", "Abigail", "Jenna", "Allison", "Hannah", "Kaitlin", "Katy", "Emily",
+                      "Katherine"],
+        "african": ["Nombeko", "Ekua", "Emem", "Anaya", "Ashanti", "Chike", "Mesi", "Nia", "Sauda", "Zalika"],
+        "southern": ["Caroline", "Charlotte", "Ruby", "Bea", "Daisy", "Isabelle", "Selena", "Rita", "Ella", "Violet"],
+        "asian": ["Kim", "Minji", "Jane", "Lily", "Alice", "Amy", "Jessica", "Sarah", "Rachel", "Cherry"]}
 
     male_names = {"caucasian": ["Jake", "Cody", "Luke", "Logan", "Cole", "Lucas", "Bradley", "Jacob", "Dylan", "Colin"],
-                  "african": ["Akachi", "Berko", "Cayman", "Chibuzo", "Desta", "Dubaku", "Keyon", "Obasi", "Simba", "Talib"],
-                  "southern": ["Billy", "Abott", "Alden", "Mason", "Davis", "Nolan", "Redmond", "Victor", "Lester", "Emmet"],
+                  "african": ["Akachi", "Berko", "Cayman", "Chibuzo", "Desta", "Dubaku", "Keyon", "Obasi", "Simba",
+                              "Talib"],
+                  "southern": ["Billy", "Abott", "Alden", "Mason", "Davis", "Nolan", "Redmond", "Victor", "Lester",
+                               "Emmet"],
                   "asian": ["Lee", "Jason", "Daniel", "James", "David", "Jack", "Eric", "Tony", "Sam", "Chris"]}
 
     if gender.lower() == "male":
         for ety, names in male_names.items():
             if ety == ethnicity:
-                rand_num = random.randint(0, len(names)-1)
+                rand_num = random.randint(0, len(names) - 1)
                 return names[rand_num]
     else:
         for ety, names in female_names.items():
             if ety == ethnicity:
-                rand_num = random.randint(0, len(names)-1)
+                rand_num = random.randint(0, len(names) - 1)
                 return names[rand_num]
 
 
@@ -242,3 +253,15 @@ def get_json_data_from_input(text_input):
 
 get_json_data_from_input(
     "sHe is 28 years old and has a dog. Sometimes she is very rude and aggressive to people. She is a southern.")
+
+# K. Jaiswal. Custom Named Entity Recognition Using Spacy. Geraadpleegd via
+# https://towardsdatascience.com/custom-named-entity-recognition-using-spacy-7140ebbb3718
+# Geraadpleegd op 4 april 2020
+
+# M. Murugavel. How to Train NER with Custom training data using spaCy. Geraadpleegd via
+# https://medium.com/@manivannan_data/how-to-train-ner-with-custom-training-data-using-spacy-188e0e508c6
+# Geraadpleegd op 4 april 2020
+
+# M. Murugavel. Train Spacy ner with custom dataset. Geraadpleegd via
+# https://github.com/ManivannanMurugavel/spacy-ner-annotator
+# Geraadpleegd op 4 april 2020
